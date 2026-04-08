@@ -5,6 +5,12 @@ RUN apk update && apk upgrade
 
 WORKDIR /app
 
+# --- ADDED: Define Build Arguments ---
+# This allows Render to pass the URL into the build process
+ARG VITE_API_URL
+# This makes it available to the shell so Vite can see it
+ENV VITE_API_URL=$VITE_API_URL
+
 COPY package*.json ./
 RUN npm install
 
